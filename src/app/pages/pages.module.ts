@@ -12,6 +12,7 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 
 import { ChartsModule } from 'ng2-charts';
 import { GraficoDonutComponent } from '../components/grafico-donut/grafico-donut.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
     declarations:[
@@ -20,7 +21,8 @@ import { GraficoDonutComponent } from '../components/grafico-donut/grafico-donut
         ProgressComponent,
         PagesComponent,
         IncrementadorComponent,
-        GraficoDonutComponent
+        GraficoDonutComponent,
+        AccountSettingsComponent
     ],
     exports:[
         DashboardComponent,
