@@ -23,6 +23,23 @@ export class UsuarioService {
   ) {
     this.cargarStorage();
   }
+
+  renuevaToken() {
+    let url = URL_SERVICIOS + '/login/renuevatoken?token=' + this.token;
+    return this.http.get(url).pipe(
+      map((resp: any) => {
+        this.token = resp.token;
+        localStorage.setItem('token', this.token);
+        console.log('token renovado');
+        return true;
+      }),
+      catchError(err => {
+        this.router.navigate(['/login']);
+        swal('No se pudo renovar el token', 'Token No Renovado', 'error');
+        return throwError(err);
+      })
+    );
+  }
   estaLogueado() {
     return (this.token.length > 5) ? true : false;
   }
@@ -89,7 +106,7 @@ export class UsuarioService {
           swal('Error en el login', err.error.mensaje, 'error');
           return throwError(err);
         })
-        );
+      );
   }
 
 
@@ -106,7 +123,7 @@ export class UsuarioService {
           swal(err.error.mensaje, err.error.errors.message, 'error');
           return throwError(err);
         })
-        );
+      );
   }
 
   actualizarUsuario(usuario: Usuario) {

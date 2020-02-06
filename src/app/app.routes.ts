@@ -8,12 +8,19 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { Graficas1Component } from './pages/graficas1/graficas1.component';
+import { AdminGuard } from './services/guards/admin.guard';
 
 
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    {
+        path: '',
+        component: PagesComponent,
+        canActivate: [AdminGuard],
+        loadChildren:'./pages/pages.module#PagesModule'
+    },
     { path: '**', component: NopagefoundComponent }
 ];
 

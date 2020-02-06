@@ -12,11 +12,15 @@ export class AdminGuard implements CanActivate {
     public router: Router
   ) { }
   canActivate() {
-    if (this.usuarioService.usuario.role === 'ADMIN_ROLE') {
-      return true;
-    } else {
+    if (this.usuarioService.usuario != null) {
+      if (this.usuarioService.usuario.role === 'ADMIN_ROLE') {
+        return true;
+      }
+    }
+    else {
       console.log('BLOQUEADO POR EL ADMIN GUARD');
       this.router.navigate(['/login']);
+      return true;
     }
   }
 
